@@ -28,12 +28,13 @@ Purpose |Endpoints |Method |Sample| Authentication
 
 |View all blog posts |'blog/list/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
 
-|22-Aug-08 |23:03 | 152 |
-Back-to-back with previous interval.
+|Create a blog post |'blog/list/' |**POST** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
 
-|24-Aug-08 |40:00 | 145 |
-Moderately hard interspersed with 3x 3min intervals (2min
-hard + 1min really hard taking the HR up to 160).
+|View an individual blog post |'blog/<int:blog-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/1/ [for blog 1] | [Authentication: none]
+
+|Update a individual blog post |'blog/<int:blog-id>/' |**PUT** | http://pranavtiwari.pythonanywhere.com/blog/1/ | [Authentication: IsAuthor]
+
+
 
 |=========================================================
 
