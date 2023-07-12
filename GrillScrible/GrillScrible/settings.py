@@ -86,15 +86,12 @@ WSGI_APPLICATION = 'GrillScrible.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog_db',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blog_db_hepf',
         'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'3307',
-        "OPTIONS": {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },  
+        'PASSWORD':'vE5PiEqn6QcOMXWi7fP8vdEWQIaePjob',
+        'HOST':'dpg-cineq9lph6ei90e2hfug-a.oregon-postgres.render.com',
+        'PORT':'5432',
     }
 }
 
@@ -156,9 +153,3 @@ SIMPLE_JWT={
     'BLACKLIST_AFTER_ROTATION': False,
     'UPDATE_LAST_LOGIN': False,
 }
-#us:pranav
-#pass:secret
-#us:manoj
-#pass:kumarsanu
-#us:twitch
-#pass:tweet123
