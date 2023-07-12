@@ -23,11 +23,10 @@ toc::[]
 ====
 
 .Blog posts end points
-[width="80%",cols="3,^2,^2,^2,10",options="header"]
 |=========================================================
 Purpose |Endpoints |Method |Sample| Authentication
 
-View all blog posts |'blog/list/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
+|View all blog posts |'blog/list/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
 
 |22-Aug-08 |23:03 | 152 |
 Back-to-back with previous interval.
