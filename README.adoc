@@ -26,16 +26,35 @@ Method: **GET** [Authentication: none]
  
 __sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/list/
 
-==== Create a blog posts
+==== Create a blog post
 End point **:** 'blog/list/'           
 
 Method: **POST** [Authentication: required]
 
 __sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/list/
 
-==== View a single blog post
+==== View an individual blog post
 
-==== Create a new blog post
+End point **:** 'blog/<int:blog-id>/'           
+
+Method: **GET** [Authentication: none]
+ 
+__sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/1/ [for blog 1]
+
+==== Update a individual blog post
+
+End point **:** 'blog/<int:blog-id>/'
+
+Method: **PUT** [Authentication: IsAuthor]
+
+==== View all blog posts of logged in user
+End point **:** 'blog/mylist/'           
+
+Method: **GET** [Authentication: required]
+ 
+__sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/mylist/
+
+
 
 
 == Features 
