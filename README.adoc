@@ -17,6 +17,12 @@ toc::[]
 
 == Endpoints
 
+
+
+=== Blog posts
+
+==== View all blog posts
+
 .Windtrainer workouts
 [width="80%",cols="3,^2,^2,10",options="header"]
 |=========================================================
@@ -35,9 +41,6 @@ hard + 1min really hard taking the HR up to 160).
 
 |=========================================================
 
-=== Blog posts
-
-==== View all blog posts
 End point **:** 'blog/list/'           
 
 Method: **GET** [Authentication: none]
