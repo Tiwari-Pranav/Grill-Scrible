@@ -1,0 +1,60 @@
+# Grill-Scrible
+A blogging website
+= The GrillScrible: 
+:toc:
+:toc-placement!:
+
+
+image:https://github.com/Tiwari-Pranav/fsf_2022_task3/blob/main/Images/website-logo.png[TAP Logo,title="TAP Logo"]
+
+
+**The Grill Scrible** is a powerful and flexible backend **Backend** for a **Blogging Website**. Built using **Django Rest Framework**,  it provides all the essential functionalities required to create and manage a dynamic blogging platform. With features like user authentication, tagging, and commenting system, The **Grill Scrible** is designed to empower bloggers and enhance the user experience.
+
+The project is currently hosted on __PythonAnyWhere__ server for testing purpose : http://pranavtiwari.pythonanywhere.com/
+
+== Website 
+
+[discrete]
+# INDEX
+
+toc::[]
+
+== Features 
+**The Backend** contain all essential features:
+
+=== User Authentication 	
+The Grill Scrible enables user registration, login, and logout functionality, ensuring secure access to the platform through **JWT Authorization**.
+
+==== Unauthorized Access
+- Can access all blogs and their associated comments
+- Can can like any blog
+- Can comment on any blog
+
+==== Authorization
+- To write blog you must be authenticated 
+- Only the author can updaqte his blog
+- User can view all his details and blogs from profile page and can edit them
+
+=== Searching
+Implement a powerful search feature that allows users to search for specific blog posts using author details, keywords or tags.
+
+=== Tagging System 	
+Organize blog posts with tags to improve categorization and discoverability. 
+__only admin can create and modify tags__
+
+
+***Demo***
+
+
+***Demo***
+
+***__Anonymous User Logged-In__***
+
+
+
+***_Admin Logged-In_***
+
+
+
+
+
