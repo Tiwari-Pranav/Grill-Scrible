@@ -19,12 +19,12 @@ toc::[]
 
 === Blog posts
 
-====View all blog posts
+==== View all blog posts
 End point: 'blog/list/'
 __sample__:http://pranavtiwari.pythonanywhere.com/blog/list/
-====View a single blog post
+==== View a single blog post
 
-====Create a new blog post
+==== Create a new blog post
 
 
 == Features 
