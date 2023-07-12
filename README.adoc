@@ -17,6 +17,24 @@ toc::[]
 
 == Endpoints
 
+.Windtrainer workouts
+[width="80%",cols="3,^2,^2,10",options="header"]
+|=========================================================
+|Date |Duration |Avg HR |Notes
+
+|22-Aug-08 |10:24 | 157 |
+Worked out MSHR (max sustainable heart rate) by going hard
+for this interval.
+
+|22-Aug-08 |23:03 | 152 |
+Back-to-back with previous interval.
+
+|24-Aug-08 |40:00 | 145 |
+Moderately hard interspersed with 3x 3min intervals (2min
+hard + 1min really hard taking the HR up to 160).
+
+|=========================================================
+
 === Blog posts
 
 ==== View all blog posts
@@ -54,7 +72,35 @@ Method: **GET** [Authentication: required]
  
 __sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/mylist/
 
+=== Blog posts
 
+==== View all blog posts
+End point **:** 'blog/list/'           
+
+Method: **GET** [Authentication: none]
+ 
+__sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/list/
+
+==== Create a blog post
+End point **:** 'blog/list/'           
+
+Method: **POST** [Authentication: required]
+
+__sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/list/
+
+==== View an individual blog post
+
+End point **:** 'blog/<int:blog-id>/'           
+
+Method: **GET** [Authentication: none]
+ 
+__sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/1/ [for blog 1]
+
+==== Update a individual blog post
+
+End point **:** 'blog/<int:blog-id>/'
+
+Method: **PUT** [Authentication: IsAuthor]
 
 
 == Features 
