@@ -24,7 +24,7 @@ toc::[]
 |=========================================================
 Purpose |Endpoints |Method |Sample| Authentication
 
-|View all blog posts |'blog/list/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/list/ | No Authentication
+|View all blog posts |'blog/list/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
 
 |Create a blog post |'blog/list/' |**POST** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
 
@@ -32,12 +32,28 @@ Purpose |Endpoints |Method |Sample| Authentication
 
 |Update a individual blog post |'blog/<int:blog-id>/' |**PUT** | http://pranavtiwari.pythonanywhere.com/blog/1/ | [Authentication: IsAuthor]
 
+|Delete a individual blog post |'blog/<int:blog-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/1/ | Author only
+
 |View all blog posts of logged in user | blog/mylist/ |**GET** | http://pranavtiwari.pythonanywhere.com/blog/mylist/ | [Authentication: Login required]
 
 |=========================================================
 
-=== Cooment endpoints
+=== Comment endpoints
 
+|=========================================================
+Purpose |Endpoints |Method |Sample| Authentication
+
+|View all comments of a blog post |'blog/<int:blog-id>/comments/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/1/comments/ (for blog 1) | [Authentication: none]
+
+|Create a comment for a blog post |'blog/<int:blog-id>/comments/' | **POST** | http://pranavtiwari.pythonanywhere.com/blog/1/comments/ (for blog 1) | [Authentication: none]
+
+|View an individual comment post |'blog/comments/<int:comment-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/comments/1/ [for comment 1] | [Authentication: none]
+
+|Delete a individual comment post |'blog/comments/<int:blog-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/1/ | Admin Only
+
+|View all blog posts of logged in user | blog/mylist/ |**GET** | http://pranavtiwari.pythonanywhere.com/blog/mylist/ | [Authentication: Login required]
+
+|=========================================================
 
 ==== Update a individual blog post
 
