@@ -15,12 +15,21 @@ The project is currently hosted on __PythonAnyWhere__ server for testing purpose
 
 toc::[]
 
-==Endpoints
+== Endpoints
 
 === Blog posts
 
 ==== View all blog posts
-End point **:** 'blog/list/'           **METHOD: GET**
+End point **:** 'blog/list/'           
+
+Method: **GET** [Authentication: none]
+ 
+__sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/list/
+
+==== Create a blog posts
+End point **:** 'blog/list/'           
+
+Method: **POST** [Authentication: required]
 
 __sample__ **:** http://pranavtiwari.pythonanywhere.com/blog/list/
 
