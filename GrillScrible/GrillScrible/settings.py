@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8w*ax$xvqj)r=^8!_ad44&hm11mim18g+7%_4$ennc67&cguyb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','pranavtiwari.pythonanywhere.com']
 
 AUTH_USER_MODEL='accounts.Profile'
 
@@ -86,12 +86,12 @@ WSGI_APPLICATION = 'GrillScrible.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blog_db_hepf',
-        'USER':'root',
-        'PASSWORD':'vE5PiEqn6QcOMXWi7fP8vdEWQIaePjob',
-        'HOST':'dpg-cineq9lph6ei90e2hfug-a.oregon-postgres.render.com',
-        'PORT':'5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pranavtiwari$blog_db',
+        'USER':'pranavtiwari',
+        'PASSWORD':'**********',
+        'HOST':'**********',
+        'PORT':'3306',
     }
 }
 
