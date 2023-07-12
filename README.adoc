@@ -52,6 +52,7 @@ Purpose |Endpoints |Method |Sample| Authentication
 |Delete a individual comment post |'blog/comments/<int:comment-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/comments/1/ | [Authentication: Admin]
 
 |=========================================================
+
 === Tag endpoints
 
 |=========================================================
