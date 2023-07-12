@@ -21,7 +21,9 @@ toc::[]
 
 ==== View all blog posts
 End point: 'blog/list/'
+
 __sample__:http://pranavtiwari.pythonanywhere.com/blog/list/
+
 ==== View a single blog post
 
 ==== Create a new blog post
