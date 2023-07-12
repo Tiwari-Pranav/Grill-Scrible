@@ -23,7 +23,7 @@ toc::[]
 ====
 
 .Blog posts end points
-[width="80%",options="header"]
+[width="80%",cols="3,^2,^2,^2,10",options="header"]
 |=========================================================
 Purpose |Endpoints |Method |Sample| Authentication
 
