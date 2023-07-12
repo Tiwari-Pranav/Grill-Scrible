@@ -15,6 +15,18 @@ The project is currently hosted on __PythonAnyWhere__ server for testing purpose
 
 toc::[]
 
+==Endpoints
+
+=== Blog posts
+
+====View all blog posts
+End point: 'blog/list/'
+__sample__:http://pranavtiwari.pythonanywhere.com/blog/list/
+====View a single blog post
+
+====Create a new blog post
+
+
 == Features 
 **The Backend** contain all essential features:
 
