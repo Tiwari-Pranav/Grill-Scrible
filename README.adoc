@@ -25,7 +25,7 @@ toc::[]
 
 |=========================================================
 Purpose |Endpoints |Method |Sample| Authentication
-|=========================================================
+
 |View all blog posts |'blog/list/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
 
 |Create a blog post |'blog/list/' |**POST** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
