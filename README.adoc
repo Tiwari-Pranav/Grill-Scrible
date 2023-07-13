@@ -31,23 +31,20 @@ To start using The Grill Scrible, follow the steps below:
  git clone https://github.com/your-username/the-grill-scrible.git
 ----
 - Install the project dependencies:
-
-TIP: pip install -r requirements.txt
-
-- Fill in necessary database details in settings.py
+----
+pip install -r requirements.txt
+----
+TIP: Fill in database details in settings.py
 
 - Set up database
-
-TIP: python manage.py makemigrations
-
-TIP: python manage.py migrate
-
-TIP: python manage.py runserver
-
+----
+ python manage.py makemigrations
+ python manage.py migrate
+----
 - Run the server:
-
+----
 TIP: python manage.py runserver
-
+----
 The backend API will be accessible at http://localhost:8000.
 
 == Endpoints
