@@ -17,16 +17,44 @@ toc::[]
 
 == Technologies Used
 
-- Django Rest Framework: A powerful and flexible toolkit for building Web APIs using Django.
-- Python: The programming language used for the backend development.
-- MySQL: A robust and scalable relational database for storing blog posts, user information, and related data. (provided by __PythonAnyWhere__ server)
-- PythonAnyWhere: The server used for testing and demonstration purposes.
+- **Django Rest Framework**: A powerful and flexible toolkit for building Web APIs using Django.
+- **Python**: The programming language used for the backend development.
+- **MySQL**: A robust and scalable relational database for storing blog posts, user information, and related data. (provided by __PythonAnyWhere__ server)
+- **PythonAnyWhere**: The server used for testing and demonstration purposes.
 
 == Getting Started
 
 To start using The Grill Scrible, follow the steps below:
 
+- Clone the repository:
 
+TIP: git clone https://github.com/your-username/the-grill-scrible.git
+
+- Install the project dependencies:
+
+TIP: pip install -r requirements.txt
+
+- Fill in necessary database details in settings.py
+
+- Set up database
+
+TIP: python manage.py makemigrations
+
+TIP: python manage.py migrate
+
+TIP: python manage.py runserver
+
+- Run the server:
+
+TIP: python manage.py runserver
+
+The backend API will be accessible at http://localhost:8000.
+
+== Endpoints
+[discrete]
+# INDEX
+
+toc::[]
 == Endpoints
 
 
