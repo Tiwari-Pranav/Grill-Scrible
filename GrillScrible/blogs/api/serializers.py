@@ -18,7 +18,6 @@ class BlogSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model=Blog
-        # fields='__all__'
         read_only_fields = ['id','date_updated','date_published','likes_count','author','published']
         exclude=['likes_ip',]
 

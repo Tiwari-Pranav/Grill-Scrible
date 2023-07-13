@@ -153,16 +153,6 @@ Organize blog posts with tags to improve categorization and discoverability.
 [__only admin can create and modify tags__]
 
 
-***Demo***
-
-
-***Demo***
-
-***__Anonymous User Logged-In__***
-
-
-
-***_Admin Logged-In_***
 
 
 
