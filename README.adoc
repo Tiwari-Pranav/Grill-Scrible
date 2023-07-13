@@ -78,17 +78,19 @@ Purpose |Endpoints |Method |Sample| Authentication
 |=========================================================
 Purpose |Endpoints |Method |Sample| Authentication
 
-|View all blog posts |'blog/list/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
+|View all blog posts |'blog/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/ | [Authentication: none]
 
-|Search a blog posts |'blog/list/?search=<search-by>' | **GET** | https://pranavtiwari.pythonanywhere.com/blog/list/?search=DataScience | [Authentication: none]
+|Search a blog posts |'blog/?search=<search-by>' | **GET** | https://pranavtiwari.pythonanywhere.com/blog/?search=DataScience | [Authentication: none]
 
-|Create a blog post |'blog/list/' |**POST** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: JWT Access Token]
+|Create a blog post |'blog/' |**POST** | http://pranavtiwari.pythonanywhere.com/blog/ | [Authentication: JWT Access Token]
 
 |View an individual blog post |'blog/<int:blog-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/1/ [ex blog 1] | [Authentication: none]
 
 |Update a individual blog post |'blog/<int:blog-id>/' |**PUT** | http://pranavtiwari.pythonanywhere.com/blog/1/ [ex blog 1] | [Authentication: Author/JWT Access Token]
 
 |Delete a individual blog post |'blog/<int:blog-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/1/ [ex blog 1] | [Authentication: Author/JWT Access Token]
+
+|Like a individual blog post |'blog/<int:blog-id>/like' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/1/like/ [ex blog 1] | [Authentication: Only one like per IP Address]
 
 |View all blog posts of logged in user | blog/mylist/ |**GET** | http://pranavtiwari.pythonanywhere.com/blog/mylist/ | [Authentication: JWT Access Token]
 
@@ -152,7 +154,12 @@ https://pranavtiwari.pythonanywhere.com/blog/list/?search=DataScience
 Organize blog posts with tags to improve categorization and discoverability. 
 [__only admin can create and modify tags__]
 
+=== IP tracking
+The IP address of the users who like a blog are recorded to ensure only one like per IP Address.
 
+== Credentials
+Username: manoj
+Password: Password@123
 
 
 
