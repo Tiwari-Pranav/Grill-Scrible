@@ -27,9 +27,9 @@ toc::[]
 To start using The Grill Scrible, follow the steps below:
 
 - Clone the repository:
-
-TIP: git clone https://github.com/your-username/the-grill-scrible.git
-
+----
+ git clone https://github.com/your-username/the-grill-scrible.git
+----
 - Install the project dependencies:
 
 TIP: pip install -r requirements.txt
