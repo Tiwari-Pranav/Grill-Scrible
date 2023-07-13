@@ -18,6 +18,24 @@ toc::[]
 == Endpoints
 
 
+=== Account endpoints
+
+|=========================================================
+Purpose |Endpoints |Method |Sample| Authentication
+
+|Register user |'account/register/' | **POST** | http://pranavtiwari.pythonanywhere.com/account/register/ | [Authentication: none]
+
+|Login user  |'account/login/' | **POST** | http://pranavtiwari.pythonanywhere.com/account/login/ | [Authentication: Credentials]
+
+|Logut user |'account/login/' | **POST** | http://pranavtiwari.pythonanywhere.com/account/logout/  | [Authentication: JWT Access Token]
+
+|Refresh Token |'account/refresh/' |**PUT** | http://pranavtiwari.pythonanywhere.com/account/login/ | [Authentication: JWT Refresh Token]
+
+|Profile detail |'/account/profile/' |**GET** | http://pranavtiwari.pythonanywhere.com/account/profile/ | [Authentication: Admin]
+
+|Profile detail update|'/account/profile/' |**PUT** | http://pranavtiwari.pythonanywhere.com/account/profile/ | [Authentication: Admin]
+
+|=========================================================
 
 === Blog posts endpoints
 
@@ -26,15 +44,15 @@ Purpose |Endpoints |Method |Sample| Authentication
 
 |View all blog posts |'blog/list/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
 
-|Create a blog post |'blog/list/' |**POST** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
+|Create a blog post |'blog/list/' |**POST** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: JWT Access Token]
 
 |View an individual blog post |'blog/<int:blog-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/1/ [for blog 1] | [Authentication: none]
 
-|Update a individual blog post |'blog/<int:blog-id>/' |**PUT** | http://pranavtiwari.pythonanywhere.com/blog/1/ | [Authentication: Author]
+|Update a individual blog post |'blog/<int:blog-id>/' |**PUT** | http://pranavtiwari.pythonanywhere.com/blog/1/ | [Authentication: Author/JWT Access Token]
 
-|Delete a individual blog post |'blog/<int:blog-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/1/ | [Authentication: Author]
+|Delete a individual blog post |'blog/<int:blog-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/1/ | [Authentication: Author/JWT Access Token]
 
-|View all blog posts of logged in user | blog/mylist/ |**GET** | http://pranavtiwari.pythonanywhere.com/blog/mylist/ | [Authentication: Login]
+|View all blog posts of logged in user | blog/mylist/ |**GET** | http://pranavtiwari.pythonanywhere.com/blog/mylist/ | [Authentication: JWT Access Token]
 
 |=========================================================
 
@@ -70,11 +88,6 @@ Purpose |Endpoints |Method |Sample| Authentication
 
 |=========================================================
 
-==== Update a individual blog post
-
-End point **:** 'blog/<int:blog-id>/'
-
-Method: **PUT** [Authentication: IsAuthor]
 
 
 == Features 
