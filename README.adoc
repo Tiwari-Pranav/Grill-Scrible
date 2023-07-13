@@ -15,14 +15,14 @@ The project is currently hosted on __PythonAnyWhere__ server for testing purpose
 
 toc::[]
 
-==Technologies Used
+== Technologies Used
 
 - Django Rest Framework: A powerful and flexible toolkit for building Web APIs using Django.
 - Python: The programming language used for the backend development.
 - MySQL: A robust and scalable relational database for storing blog posts, user information, and related data. (provided by __PythonAnyWhere__ server)
 - PythonAnyWhere: The server used for testing and demonstration purposes.
 
-==Getting Started
+== Getting Started
 
 To start using The Grill Scrible, follow the steps below:
 
