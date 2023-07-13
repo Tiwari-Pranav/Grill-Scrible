@@ -27,13 +27,13 @@ Purpose |Endpoints |Method |Sample| Authentication
 
 |Login user  |'account/login/' | **POST** | http://pranavtiwari.pythonanywhere.com/account/login/ | [Authentication: Credentials]
 
-|Logut user |'account/login/' | **POST** | http://pranavtiwari.pythonanywhere.com/account/logout/  | [Authentication: JWT Access Token]
+|Logut user |'account/logout/' | **POST** | http://pranavtiwari.pythonanywhere.com/account/logout/  | [Authentication: JWT Access Token]
 
-|Refresh Token |'account/refresh/' |**PUT** | http://pranavtiwari.pythonanywhere.com/account/login/ | [Authentication: JWT Refresh Token]
+|Refresh Token |'account/refresh/' |**POST** | http://pranavtiwari.pythonanywhere.com/account/login/ | [Authentication: JWT Refresh Token]
 
-|Profile detail |'/account/profile/' |**GET** | http://pranavtiwari.pythonanywhere.com/account/profile/ | [Authentication: Admin]
+|Profile detail |'account/profile/' |**GET** | http://pranavtiwari.pythonanywhere.com/account/profile/ | [Authentication: Admin]
 
-|Profile detail update|'/account/profile/' |**PUT** | http://pranavtiwari.pythonanywhere.com/account/profile/ | [Authentication: Admin]
+|Profile detail update|'account/profile/' |**PUT** | http://pranavtiwari.pythonanywhere.com/account/profile/ | [Authentication: Admin]
 
 |=========================================================
 
@@ -48,11 +48,11 @@ Purpose |Endpoints |Method |Sample| Authentication
 
 |Create a blog post |'blog/list/' |**POST** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: JWT Access Token]
 
-|View an individual blog post |'blog/<int:blog-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/1/ [for blog 1] | [Authentication: none]
+|View an individual blog post |'blog/<int:blog-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/1/ [ex blog 1] | [Authentication: none]
 
-|Update a individual blog post |'blog/<int:blog-id>/' |**PUT** | http://pranavtiwari.pythonanywhere.com/blog/1/ | [Authentication: Author/JWT Access Token]
+|Update a individual blog post |'blog/<int:blog-id>/' |**PUT** | http://pranavtiwari.pythonanywhere.com/blog/1/ [ex blog 1] | [Authentication: Author/JWT Access Token]
 
-|Delete a individual blog post |'blog/<int:blog-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/1/ | [Authentication: Author/JWT Access Token]
+|Delete a individual blog post |'blog/<int:blog-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/1/ [ex blog 1] | [Authentication: Author/JWT Access Token]
 
 |View all blog posts of logged in user | blog/mylist/ |**GET** | http://pranavtiwari.pythonanywhere.com/blog/mylist/ | [Authentication: JWT Access Token]
 
@@ -63,13 +63,13 @@ Purpose |Endpoints |Method |Sample| Authentication
 |=========================================================
 Purpose |Endpoints |Method |Sample| Authentication
 
-|View all comments of a blog post |'blog/<int:blog-id>/comments/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/1/comments/ (for blog 1) | [Authentication: none]
+|View all comments of a blog post |'blog/<int:blog-id>/comments/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/1/comments/ [ex blog 1] | [Authentication: none]
 
-|Create a comment for a blog post |'blog/<int:blog-id>/comments/' | **POST** | http://pranavtiwari.pythonanywhere.com/blog/1/comments/ (for blog 1) | [Authentication: none]
+|Create a comment for a blog post |'blog/<int:blog-id>/comments/' | **POST** | http://pranavtiwari.pythonanywhere.com/blog/1/comments/ [ex blog 1] | [Authentication: none]
 
-|View an individual comment post |'blog/comments/<int:comment-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/comments/1/ [for comment 1] | [Authentication: none]
+|View an individual comment post |'blog/comments/<int:comment-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/comments/1/ [ex blog 1] | [Authentication: none]
 
-|Delete a individual comment post |'blog/comments/<int:comment-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/comments/1/ | [Authentication: Admin]
+|Delete a individual comment post |'blog/comments/<int:comment-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/comments/1/ [ex blog 1] | [Authentication: Admin]
 
 |=========================================================
 
@@ -84,9 +84,9 @@ Purpose |Endpoints |Method |Sample| Authentication
 
 |View an individual tag |'blog/tags/<int:tag-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/tags/1/ [for comment 1] | [Authentication: none]
 
-|Update a individual tag |'blog/tag/<int:tag-id>/' |**PUT** | http://pranavtiwari.pythonanywhere.com/blog/tag/1/ | [Authentication: Admin]
+|Update a individual tag |'blog/tag/<int:tag-id>/' |**PUT** | http://pranavtiwari.pythonanywhere.com/blog/tag/1/ [ex blog 1] | [Authentication: Admin]
 
-|Delete a individual tag |'blog/tag/<int:tag-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/tag/1/ | [Authentication: Admin]
+|Delete a individual tag |'blog/tag/<int:tag-id>/' |**DELETE** | http://pranavtiwari.pythonanywhere.com/blog/tag/1/ [ex blog 1] | [Authentication: Admin]
 
 |=========================================================
 
@@ -114,7 +114,7 @@ https://pranavtiwari.pythonanywhere.com/blog/list/?search=DataScience
 
 === Tagging System 	
 Organize blog posts with tags to improve categorization and discoverability. 
-__only admin can create and modify tags__
+[__only admin can create and modify tags__]
 
 
 ***Demo***
