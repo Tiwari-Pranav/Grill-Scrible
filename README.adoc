@@ -5,7 +5,7 @@ A blogging website
 :toc-placement!:
 
 
-image:https://github.com/Tiwari-Pranav/Grill-Scrible/logo.jpeg[TAP Logo,title="Grill-Script Logo"]
+image:https://github.com/Tiwari-Pranav/Grill-Scrible/main/logo.jpeg [TAP Logo,title="Grill-Script Logo"]
 
 
 **The Grill Scrible** is a powerful and flexible backend **Backend** for a **Blogging Website**. Built using **Django Rest Framework**,  it provides all the essential functionalities required to create and manage a dynamic blogging platform. With features like user authentication, tagging, and commenting system, The **Grill Scrible** is designed to empower bloggers and enhance the user experience.
