@@ -51,11 +51,6 @@ TIP: python manage.py runserver
 The backend API will be accessible at http://localhost:8000.
 
 == Endpoints
-[discrete]
-# INDEX
-
-toc::[]
-== Endpoints
 
 
 === Account endpoints
