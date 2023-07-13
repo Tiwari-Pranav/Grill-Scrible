@@ -157,6 +157,10 @@ Organize blog posts with tags to improve categorization and discoverability.
 === IP tracking
 The IP address of the users who like a blog are recorded to ensure only one like per IP Address.
 
+== Credentials
+Username: manoj
+Password: Password@123
+
 
 
 
