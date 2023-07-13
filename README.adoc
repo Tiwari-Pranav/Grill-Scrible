@@ -44,6 +44,8 @@ Purpose |Endpoints |Method |Sample| Authentication
 
 |View all blog posts |'blog/list/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: none]
 
+|Search a blog posts |'blog/list/?search=<search-by>' | **GET** | https://pranavtiwari.pythonanywhere.com/blog/list/?search=DataScience | [Authentication: none]
+
 |Create a blog post |'blog/list/' |**POST** | http://pranavtiwari.pythonanywhere.com/blog/list/ | [Authentication: JWT Access Token]
 
 |View an individual blog post |'blog/<int:blog-id>/' | **GET** | http://pranavtiwari.pythonanywhere.com/blog/1/ [for blog 1] | [Authentication: none]
@@ -108,6 +110,7 @@ The Grill Scrible enables user registration, login, and logout functionality, en
 
 === Searching
 Implement a powerful search feature that allows users to search for specific blog posts using author details, keywords or tags.
+https://pranavtiwari.pythonanywhere.com/blog/list/?search=DataScience
 
 === Tagging System 	
 Organize blog posts with tags to improve categorization and discoverability. 
