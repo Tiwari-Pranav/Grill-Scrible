@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     #my apps
     'blogs',
     'accounts',
-    'utils',
+    'common',
     #third party
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',

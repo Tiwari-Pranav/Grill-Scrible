@@ -1,3 +1,4 @@
+from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 from django.db import models
 from django.contrib.auth import get_user_model
 User=get_user_model()
@@ -33,11 +34,11 @@ class Blog(models.Model):
     published=models.BooleanField(default=True)
     
     def __str__(self):
-        return str(self.author)+" | "+str(self.title)
+        return f'{str(self.author)} | {str(self.title)}'
     
     @property
     def blog_name(self):
-        return str(self.id)+". "+self.title
+        return f'{str(self.id)} . {self.title}'
     
     class Meta:
         verbose_name_plural='Blogs'
@@ -51,8 +52,12 @@ class Comment(models.Model):
     related_blog=models.ForeignKey(Blog,on_delete=models.CASCADE,related_name="comments")
     
     def __str__(self):
-        return str(self.comment_user)+ "-"+ self.related_blog.title        
+        return f'{str(self.comment_user)} - {self.related_blog.title}'        
     
     class Meta:
         verbose_name_plural='Comments'
         verbose_name='Comment'               
+        
+class Session(models.Model):
+    out_token=models.ForeignKey(OutstandingToken, on_delete=models.CASCADE,null=True)
+    client=models.ForeignKey(User, on_delete=models.CASCADE)

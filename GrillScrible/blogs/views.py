@@ -5,24 +5,29 @@ from rest_framework import generics
 from rest_framework.permissions import *
 from blogs.serializers import *
 from blogs.models import Blog, Comment, Tag, IpModel
-from utils.permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
-from utils.pagination import ListPageNumberPagination
+from common.permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
+from common.pagination import ListPageNumberPagination
 # In requirment of the project, class based views are instructed
 
 class TagListAView(APIView):
     #Only admin can create tags
     permission_classes=[IsAdminOrReadOnly] 
     def get(self,request):
-        tag=Tag.objects.all()
-        serializer=TagSerializer(tag,many=True)
-        return Response(serializer.data,status=status.HTTP_200_OK)
+        try:
+            tag=Tag.objects.all()
+            serializer=TagSerializer(tag,many=True)
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        except Tag.DoesNotExist:
+            return Response({'message':'Does not exist'},status=status.HTTP_404_NOT_FOUND)
     def post(self,request):
-        serializers=TagSerializer(data=request.data)
-        if not serializers.is_valid():
-            return Response(serializers.errors,status=status.HTTP_400_BAD_REQUEST)
-        serializers.save()
-        return Response(serializers.data,status=status.HTTP_201_CREATED)
-
+        try:
+            serializers=TagSerializer(data=request.data)
+            if not serializers.is_valid():
+                return Response(serializers.errors,status=status.HTTP_400_BAD_REQUEST)
+            serializers.save()
+            return Response(serializers.data,status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'message':'Request failed: Please come back later and try again.','error':str(e)},status=status.HTTP_400_BAD_REQUEST)
 class TagDetailAView(APIView):
     #Only admin can edit or delete tags 
     permission_classes=[IsAdminOrReadOnly]
@@ -35,18 +40,22 @@ class TagDetailAView(APIView):
         return Response(serializer.data,status=status.HTTP_200_OK)
     
     def put(self,request,pk):
-        tag=Tag.objects.get(pk=pk)
-        serializer=TagSerializer(tag,data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data,status=status.HTTP_200_OK)
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-    
+        try:
+            tag=Tag.objects.get(pk=pk)
+            serializer=TagSerializer(tag,data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data,status=status.HTTP_200_OK)
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'message':'Request failed: Please come back later and try again.','error':str(e)},status=status.HTTP_400_BAD_REQUEST)
     def delete(self,request,pk):
-        tag=Tag.objects.get(pk=pk)
-        tag.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
+        try:
+            tag=Tag.objects.get(pk=pk)
+            tag.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Exception as e:
+            return Response({'message':'Request failed: Please come back later and try again.','error':str(e)},status=status.HTTP_400_BAD_REQUEST)
 
 #Concrete View Classes can be used to create Tag views easily
 class BlogListAView(generics.ListCreateAPIView):
@@ -106,10 +115,6 @@ class CommentDetailAView(generics.RetrieveUpdateDestroyAPIView):
     queryset=Comment.objects.all()
     serializer_class=CommentSerializer
 
-
-
-
-
 def get_client_ip(request):
     return (
         x_forwarded_for.split(',')[0]
@@ -120,23 +125,25 @@ def get_client_ip(request):
 from rest_framework.decorators import api_view
 @api_view(http_method_names=['POST'])
 def blog_like(request,pk):
-    blog=Blog.objects.get(pk=pk)
-    ip=get_client_ip(request)
-    #If IP is not in the IpModel then allow to like
-    if not IpModel.objects.filter(ip=ip).exists():
-        ip_model=IpModel(ip=ip)
-        ip_model.save()
-        blog.likes_ip.add(ip_model)
-        blog.likes_count=blog.likes_count+1
-        blog.save()
-        return Response({"like":True},status.HTTP_200_OK)
-    #If IP is in the IpModel BUT not in blog.likes_ip then allow to like as it must be stored when it liked some other blog
-    elif not blog.likes_ip.filter(ip=IpModel.objects.get(ip=ip).ip).exists():
-        blog.likes_count=blog.likes_count+1
-        blog.likes_ip.add(IpModel.objects.get(ip=ip))
-        print(blog.likes_count)
-        blog.save()
-        return Response({"like":True},status.HTTP_200_OK)
-        
-    return Response({"message":"Already liked"},status=status.HTTP_429_TOO_MANY_REQUESTS)
-    
+    try:
+        blog=Blog.objects.get(pk=pk)
+        ip=get_client_ip(request)
+        #If IP is not in the IpModel then allow to like
+        if not IpModel.objects.filter(ip=ip).exists():
+            ip_model=IpModel(ip=ip)
+            ip_model.save()
+            blog.likes_ip.add(ip_model)
+            blog.likes_count=blog.likes_count+1
+            blog.save()
+            return Response({"like":True},status.HTTP_200_OK)
+        #If IP is in the IpModel BUT not in blog.likes_ip then allow to like as it must be stored when it liked some other blog
+        elif not blog.likes_ip.filter(ip=IpModel.objects.get(ip=ip).ip).exists():
+            blog.likes_count=blog.likes_count+1
+            blog.likes_ip.add(IpModel.objects.get(ip=ip))
+            print(blog.likes_count)
+            blog.save()
+            return Response({"like":True},status.HTTP_200_OK)
+            
+        return Response({"message":"Already liked"},status=status.HTTP_429_TOO_MANY_REQUESTS)
+    except Exception as e:
+        return Response({"message":"Somthing went wrong",'error':str(e)},status=status.HTTP_400_BAD_REQUEST)
