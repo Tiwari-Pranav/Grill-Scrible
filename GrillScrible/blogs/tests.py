@@ -11,7 +11,7 @@ from blogs.serializers import *
 # Create your tests here.
 class TagTestCase(APITestCase):
     def setUp(self):
-        self.user=get_user_model().objects.create_user(username='testuser',password='Password@123')
+        self.user=get_user_model().objects.create_user(username='testuser',email='testuser@examples.com',password='Password@123')
         self.refresh = RefreshToken.for_user(self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.refresh.access_token}')
 
@@ -42,7 +42,7 @@ class TagTestCase(APITestCase):
 class BlogListTestCase(APITestCase):
     
     def setUp(self):
-        self.user=get_user_model().objects.create_user(username='testuser',password='Password@123')
+        self.user=get_user_model().objects.create_user(username='testuser',email='testuser@examples.com',password='Password@123')
         self.refresh = RefreshToken.for_user(self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.refresh.access_token}')
         #manually create a tag
@@ -95,7 +95,7 @@ class BlogListTestCase(APITestCase):
 class CommentTestCase(APITestCase):
     
         def setUp(self):
-            self.user= get_user_model().objects.create_user(username='testuser',password='Passwprd@123')
+            self.user= get_user_model().objects.create_user(username='testuser',email='testuser@examples.com',password='Passwprd@123')
             self.blog=Blog.objects.create(author=self.user,title='testblog',intro='Test blog intro', description='Test blog description')
             self.comment= Comment.objects.create(related_blog=self.blog,comment_user='UserTesting',remark='Test blog description')
             
@@ -127,7 +127,7 @@ class CommentTestCase(APITestCase):
 class LikeTestCase(APITestCase):
     
     def setUp(self):
-        self.user= get_user_model().objects.create_user(username='testuser',password='Passwprd@123')
+        self.user= get_user_model().objects.create_user(username='testuser',email='testuser@examples.com',password='Passwprd@123')
         self.blog=Blog.objects.create(author=self.user,title='testblog',intro='Test blog intro', description='Test blog description')
         
     def test_like_feature(self):

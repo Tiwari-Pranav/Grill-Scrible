@@ -13,6 +13,7 @@ class RegisterTestCase(APITestCase):
     def test_register(self):
         data={
             'username':'testcase',
+            'email':'testcase@examples.com',
             'password':'Password@123',
             'password2':'Password@123'
         }
@@ -25,11 +26,12 @@ class LoginLogoutTestCase(APITestCase):
     '''Class to test login, logout and refresh functionality'''
     def setUp(self):
         # Method for setting up the test fixture before exercising it.
-        self.user=get_user_model().objects.create_user(username='newtestcase',password='NewPassword@123')
+        self.user=get_user_model().objects.create_user(username='newtestcase',email='newtestcase@examples.com',password='NewPassword@123')
         
     def test_login_logout(self):
         data={
             'username':'newtestcase',
+            'email':'newtestcase@examples.com',
             'password':'NewPassword@123'
         }
         # Try to login to a user with field is_active=False
@@ -65,7 +67,7 @@ class ProfileTestCase(APITestCase):
     
     def setUp(self):
         # Method for setting up the test fixture before exercising it.
-        self.user=get_user_model().objects.create_user(username='testcase',password='Password@123')
+        self.user=get_user_model().objects.create_user(username='testcase',email='newtestcase@examples.com',password='Password@123')
         
     def test_profile_get(self):
         self.client.force_authenticate(user=self.user)

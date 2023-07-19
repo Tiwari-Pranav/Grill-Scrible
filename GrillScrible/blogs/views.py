@@ -53,7 +53,7 @@ class BlogListAView(generics.ListCreateAPIView):
     serializer_class=BlogSerializer
     #Only authenticated users can create a new blog
     permission_classes = [IsAuthenticatedOrReadOnly]
-    pagination_class= ListPageNumberPagination(page_size=9)
+    pagination_class= ListPageNumberPagination
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
         
