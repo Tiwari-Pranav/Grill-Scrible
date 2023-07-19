@@ -2,13 +2,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import generics
-from rest_framework import permissions
 from rest_framework.permissions import *
-from blogs.api.serializers import *
+from blogs.serializers import *
 from blogs.models import Blog, Comment, Tag, IpModel
-from blogs.api.permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
-from blogs.api.pagination import BlogListPageNumberPagination
-# In requirment of the project, class based views are instuted
+from utils.permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
+from utils.pagination import ListPageNumberPagination
+# In requirment of the project, class based views are instructed
 
 class TagListAView(APIView):
     #Only admin can create tags
@@ -19,11 +18,10 @@ class TagListAView(APIView):
         return Response(serializer.data,status=status.HTTP_200_OK)
     def post(self,request):
         serializers=TagSerializer(data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data,status=status.HTTP_201_CREATED)
-        else:
+        if not serializers.is_valid():
             return Response(serializers.errors,status=status.HTTP_400_BAD_REQUEST)
+        serializers.save()
+        return Response(serializers.data,status=status.HTTP_201_CREATED)
 
 class TagDetailAView(APIView):
     #Only admin can edit or delete tags 
@@ -55,7 +53,7 @@ class BlogListAView(generics.ListCreateAPIView):
     serializer_class=BlogSerializer
     #Only authenticated users can create a new blog
     permission_classes = [IsAuthenticatedOrReadOnly]
-    pagination_class= BlogListPageNumberPagination
+    pagination_class= ListPageNumberPagination(page_size=9)
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
         
@@ -113,12 +111,11 @@ class CommentDetailAView(generics.RetrieveUpdateDestroyAPIView):
 
 
 def get_client_ip(request):
-    x_forwarded_for=request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip=x_forwarded_for.split(',')[0]
-    else:
-        ip=request.META.get('REMOTE_ADDR')
-    return ip    
+    return (
+        x_forwarded_for.split(',')[0]
+        if (x_forwarded_for := request.META.get('HTTP_X_FORWARDED_FOR'))
+        else request.META.get('REMOTE_ADDR')
+    )    
 
 from rest_framework.decorators import api_view
 @api_view(http_method_names=['POST'])

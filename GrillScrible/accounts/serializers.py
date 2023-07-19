@@ -1,21 +1,25 @@
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
-
+import re
 from django.contrib import auth
 from django.contrib.auth import get_user_model
 User=get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(max_length=68, min_length=6, write_only=True) # user can’t see that in the request sent
-    password2 = serializers.CharField(max_length=68, min_length=6, write_only=True) # user can’t see that in the request sent
+    password = serializers.CharField(max_length=68, min_length=6, style={'input_type':'password'}, write_only=True) # user can’t see that in the request sent
+    password2 = serializers.CharField(max_length=68, min_length=6, style={'input_type':'password'}, write_only=True) # user can’t see that in the request sent
     class Meta:
         model = User
-        fields = ['username', 'password', 'password2']
+        fields = ['username','email', 'password', 'password2']
     def validate(self, attrs):
         username = attrs.get('username', '')
+        email = attrs.get('email', '')
         pass1=attrs.get('password')
         pass2=attrs.pop('password2')
+        pat = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+        if not re.match(pat,email):
+            raise serializers.ValidationError("Invalid Email")
         if not username.isalnum():
             raise serializers.ValidationError(self.default_error_messages)
         if pass1 != pass2:
@@ -50,16 +54,17 @@ class LoginSerializer(serializers.ModelSerializer):
             'tokens': user.tokens
         }
     
-class LogoutSerializer(serializers.Serializer):
+class LogoutSerializer(serializers.ModelSerializer):
     refresh = serializers.CharField()
-    def validate(self, attrs):
-        self.token = attrs['refresh']
-        return attrs
+    
+    class Meta:
+        model = User
+        fields= ['refresh', ]
     def save(self, **kwargs):
         try:
-            RefreshToken(self.token).blacklist()
-        except TokenError:
-            self.fail('bad_token') 
+            RefreshToken(self.validated_data['refresh']).blacklist()
+        except TokenError as e:
+            raise serializers.ValidationError('bad_token') from e
             
 class UserSerializer(serializers.ModelSerializer):
     authors_blogs= serializers.SlugRelatedField(

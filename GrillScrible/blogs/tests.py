@@ -6,7 +6,7 @@ from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from blogs.models import *
-from blogs.api.serializers import *
+from blogs.serializers import *
 
 # Create your tests here.
 class TagTestCase(APITestCase):

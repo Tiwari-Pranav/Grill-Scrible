@@ -1,0 +1,13 @@
+# Django project
+__pycache__/
+./__pycache__/
+local_settings.py
+db.sqlite3
+
+# Development tools
+.vscode/
+
+
+
+# Ignore sensitive information
+.env

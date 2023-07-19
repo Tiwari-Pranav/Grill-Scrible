@@ -20,10 +20,6 @@ class BlogSerializer(serializers.ModelSerializer):
         model=Blog
         read_only_fields = ['id','date_updated','date_published','likes_count','author','published']
         exclude=['likes_ip',]
-
-class TagHyperlinkedRelatedField(serializers.HyperlinkedRelatedField):
-    def display_value(self, instance):
-        return 'Blog: %s' % (instance.name)        
         
 class TagSerializer(serializers.ModelSerializer):
     related_blogs = serializers.SlugRelatedField(
