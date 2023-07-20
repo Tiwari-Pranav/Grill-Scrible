@@ -4,6 +4,8 @@ from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 import re
 from django.contrib import auth
 from django.contrib.auth import get_user_model
+
+
 User=get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -33,10 +35,10 @@ class LoginSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length=255, min_length=3)
     tokens = serializers.SerializerMethodField()
     def get_tokens(self, obj):
-        user = User.objects.get(username=obj['username'])
+        token=obj.tokens()  
         return {
-            'refresh': user.tokens()['refresh'],
-            'access': user.tokens()['access']
+            'refresh': token['refresh'],
+            'access': token['access']
         }
     class Meta:
         model = User
@@ -49,10 +51,7 @@ class LoginSerializer(serializers.ModelSerializer):
             raise AuthenticationFailed('Invalid credentials, try again')
         if not user.is_active:
             raise AuthenticationFailed('Account disabled, contact admin')
-        return {
-            'username': user.username,
-            'tokens': user.tokens
-        }
+        return user
     
 class LogoutSerializer(serializers.ModelSerializer):
     refresh = serializers.CharField()
@@ -60,11 +59,9 @@ class LogoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields= ['refresh', ]
-    def save(self, **kwargs):
-        try:
-            RefreshToken(self.validated_data['refresh']).blacklist()
-        except TokenError as e:
-            raise serializers.ValidationError('bad_token') from e
+        
+    def validate(self, attrs):
+        return attrs
             
 class UserSerializer(serializers.ModelSerializer):
     authors_blogs= serializers.SlugRelatedField(

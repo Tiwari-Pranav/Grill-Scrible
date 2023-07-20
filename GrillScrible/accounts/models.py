@@ -3,8 +3,9 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 from accounts.managers import ProfileUserManager
-
+from datetime import datetime
 class Profile(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(_("username"), unique=True,max_length=20)
     email = models.EmailField(_("email address"), unique=True)
@@ -32,17 +33,13 @@ class Profile(AbstractBaseUser, PermissionsMixin):
             'access':str(refresh.access_token)
         }
         
-# Create your models here.
-# class Profile(AbstractUser):
-#     bio=models.CharField(verbose_name=_('Bio'),max_length=250,blank=True, null=True)
-#     pic=models.ImageField(verbose_name=_('Photo'),upload_to='profile',default='profile/default_avatar.jpg')
+class Session(models.Model):
+    out_token=models.ForeignKey(OutstandingToken, on_delete=models.CASCADE,null=True)
+    client=models.ForeignKey(Profile, on_delete=models.CASCADE)
     
-#     def __str__(self) -> str:
-#         return self.username+' | '+self.last_name
+    def __str__(self):
+        return f"Session for {self.client.username}"
     
-#     def tokens(self):
-#         refresh = RefreshToken.for_user(self)
-#         return{
-#             'refresh':str(refresh),
-#             'access':str(refresh.access_token)
-#         }
+    class Meta:
+        verbose_name = "Session information"
+        verbose_name_plural = "Sessions"

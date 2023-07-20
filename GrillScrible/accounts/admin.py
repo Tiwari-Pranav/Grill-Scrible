@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import Profile
+from .models import Profile, Session
 # Register your models here.
 class ProfileUserAdmin(UserAdmin):
     add_form= CustomUserCreationForm
@@ -27,3 +27,5 @@ class ProfileUserAdmin(UserAdmin):
     ordering = ("username",)
     
 admin.site.register(Profile,ProfileUserAdmin)
+
+admin.site.register(Session)

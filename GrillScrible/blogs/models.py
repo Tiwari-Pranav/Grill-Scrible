@@ -1,4 +1,3 @@
-from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 from django.db import models
 from django.contrib.auth import get_user_model
 User=get_user_model()
@@ -58,6 +57,3 @@ class Comment(models.Model):
         verbose_name_plural='Comments'
         verbose_name='Comment'               
         
-class Session(models.Model):
-    out_token=models.ForeignKey(OutstandingToken, on_delete=models.CASCADE,null=True)
-    client=models.ForeignKey(User, on_delete=models.CASCADE)
