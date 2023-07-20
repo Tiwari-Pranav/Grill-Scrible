@@ -2,6 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
 class ProfileUserManager(BaseUserManager):
+    '''Manager for custom profile user'''
     def create_user(self, username, email, password, **extra_fields):
         """
         Create and save a user with the given email and password.

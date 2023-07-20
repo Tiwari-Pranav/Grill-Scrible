@@ -6,7 +6,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 from accounts.managers import ProfileUserManager
 from datetime import datetime
+
 class Profile(AbstractBaseUser, PermissionsMixin):
+    '''Model to maintain user information'''
     username = models.CharField(_("username"), unique=True,max_length=20)
     email = models.EmailField(_("email address"), unique=True)
     is_staff = models.BooleanField(default=False)
@@ -34,6 +36,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         }
         
 class Session(models.Model):
+    '''Session model to maintain user session information'''
     out_token=models.ForeignKey(OutstandingToken, on_delete=models.CASCADE,null=True)
     client=models.ForeignKey(Profile, on_delete=models.CASCADE)
     

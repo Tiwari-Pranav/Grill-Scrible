@@ -10,6 +10,7 @@ from common.pagination import ListPageNumberPagination
 # In requirment of the project, class based views are instructed
 
 class TagListAView(APIView):
+    '''View for a list of tags available and add new'''
     #Only admin can create tags
     permission_classes=[IsAdminOrReadOnly] 
     def get(self,request):
@@ -19,7 +20,7 @@ class TagListAView(APIView):
             return Response(serializer.data,status=status.HTTP_200_OK)
         except Tag.DoesNotExist:
             return Response({'message':'Does not exist'},status=status.HTTP_404_NOT_FOUND)
-    def post(self,request):
+    def post(self,request):        
         try:
             serializers=TagSerializer(data=request.data)
             if not serializers.is_valid():
@@ -28,7 +29,9 @@ class TagListAView(APIView):
             return Response(serializers.data,status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({'message':'Request failed: Please come back later and try again.','error':str(e)},status=status.HTTP_400_BAD_REQUEST)
+
 class TagDetailAView(APIView):
+    '''View to show details of an individual tag and update it'''
     #Only admin can edit or delete tags 
     permission_classes=[IsAdminOrReadOnly]
     def get(self,request,pk):
@@ -57,8 +60,8 @@ class TagDetailAView(APIView):
         except Exception as e:
             return Response({'message':'Request failed: Please come back later and try again.','error':str(e)},status=status.HTTP_400_BAD_REQUEST)
 
-#Concrete View Classes can be used to create Tag views easily
 class BlogListAView(generics.ListCreateAPIView):
+    '''A view for listing blog posts and add new ones'''    
     serializer_class=BlogSerializer
     #Only authenticated users can create a new blog
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -79,12 +82,14 @@ class BlogListAView(generics.ListCreateAPIView):
    
         
 class BlogDetailAView(generics.RetrieveUpdateDestroyAPIView):
+    '''A view show details about an individual blog and update it'''
     #User must be author,or staff to edit
     permission_classes=[IsAuthorOrReadOnly]
     queryset=Blog.objects.all()
     serializer_class=BlogSerializer
             
 class UserBlogListAView(generics.ListCreateAPIView):
+    '''A view to list all the blogs posted by logged-in user'''
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class=BlogSerializer
     def get_queryset(self):
@@ -97,6 +102,7 @@ class UserBlogListAView(generics.ListCreateAPIView):
 
 
 class CommentListAView(generics.ListAPIView,generics.CreateAPIView):
+    '''A view to list all comments for a paticular blog and add new'''
     permission_classes=[AllowAny]
     serializer_class=CommentSerializer
     
@@ -109,7 +115,8 @@ class CommentListAView(generics.ListAPIView,generics.CreateAPIView):
         blog_item=Blog.objects.get(pk=pk)
         serializer.save(related_blog=blog_item)
     
-class CommentDetailAView(generics.RetrieveUpdateDestroyAPIView): 
+class CommentDetailAView(generics.RetrieveUpdateDestroyAPIView):
+    '''A view to detail an individual comment and update it'''
     #Only admin can delete or unactive comments
     permission_classes=[IsAdminOrReadOnly]
     queryset=Comment.objects.all()
@@ -122,28 +129,35 @@ def get_client_ip(request):
         else request.META.get('REMOTE_ADDR')
     )    
 
+''' One Ip address must be restricted to one like.
+    Throttling can restrict a single view but 
+    we need to restrict like view for each blog individually.
+    Couldn't find any documentation to do such customization
+    with throttling.
+'''
 from rest_framework.decorators import api_view
 @api_view(http_method_names=['POST'])
 def blog_like(request,pk):
+    '''View for like functionality'''
     try:
         blog=Blog.objects.get(pk=pk)
         ip=get_client_ip(request)
-        #If IP is not in the IpModel then allow to like
         if not IpModel.objects.filter(ip=ip).exists():
+            #If IP is not in the IpModel then allow to like (first time user)
             ip_model=IpModel(ip=ip)
             ip_model.save()
             blog.likes_ip.add(ip_model)
             blog.likes_count=blog.likes_count+1
             blog.save()
             return Response({"like":True},status.HTTP_200_OK)
-        #If IP is in the IpModel BUT not in blog.likes_ip then allow to like as it must be stored when it liked some other blog
         elif not blog.likes_ip.filter(ip=IpModel.objects.get(ip=ip).ip).exists():
+            #If IP is in the IpModel BUT not in blog.likes_ip then allow to like as it must be stored when it liked some other blog
             blog.likes_count=blog.likes_count+1
             blog.likes_ip.add(IpModel.objects.get(ip=ip))
             print(blog.likes_count)
             blog.save()
             return Response({"like":True},status.HTTP_200_OK)
-            
+        # Else user must have liked this blog before once    
         return Response({"message":"Already liked"},status=status.HTTP_429_TOO_MANY_REQUESTS)
     except Exception as e:
         return Response({"message":"Somthing went wrong",'error':str(e)},status=status.HTTP_400_BAD_REQUEST)
