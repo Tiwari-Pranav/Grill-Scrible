@@ -10,7 +10,7 @@ image:https://github.com/Tiwari-Pranav/Grill-Scrible/blob/95d71c4d038411c31ca1b7
 
 **The Grill Scrible** is a powerful and flexible backend **Backend** for a **Blogging Website**. Built using **Django Rest Framework**,  it provides all the essential functionalities required to create and manage a dynamic blogging platform. With features like user authentication, tagging, and commenting system, The **Grill Scrible** is designed to empower bloggers and enhance the user experience.
 
-The project is currently hosted on __PythonAnyWhere__ server for testing purpose : http://pranavtiwari.pythonanywhere.com/
+The project is currently hosted on __PythonAnyWhere__ server for testing purpose : https://pranavtiwari.pythonanywhere.com/
 
 == Website 
 
